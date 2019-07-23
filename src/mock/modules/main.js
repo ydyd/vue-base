@@ -1,7 +1,7 @@
 export default [
   {
     url: "/mock/login",
-    template: {
+    response: {
       code: "0",
       "token|3": "token"
     }

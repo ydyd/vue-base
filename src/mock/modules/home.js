@@ -1,7 +1,7 @@
 export default [
   {
     url: '/mock/home',
-    template: {
+    response: {
       code: '0',
       'list|3-7': [{
         'id|+1': 111,

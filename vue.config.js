@@ -3,6 +3,13 @@ module.exports = {
   devServer: {
     port: "8088"
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        data: '@import "~@/css/define.scss";'
+      }
+    }
+  },
   configureWebpack: {
     resolve: {
       alias: {
