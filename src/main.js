@@ -6,6 +6,8 @@ import "./mock";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
+import PageContainer from 'C/container/PageContainer.vue'
+Vue.component('page-container', PageContainer);
 
 Vue.config.productionTip = false;
 

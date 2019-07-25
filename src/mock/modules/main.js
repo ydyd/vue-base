@@ -3,7 +3,7 @@ export default [
     url: "/mock/login",
     response: {
       code: "0",
-      "token|3": "token"
+      "returnData|3": 'token'
     }
   }
 ];

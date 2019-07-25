@@ -3,7 +3,7 @@ import qs from "qs";
 import store from "@/store";
 let preApi = "";
 if (store.state.isDevelopment) {
-  preApi = "mock";
+  preApi = "/mock";
 }
 export function login(params) {
   return http({

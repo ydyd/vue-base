@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+import {login} from 'A/main'
 export default {
   name: "login",
   data() {
@@ -47,10 +48,16 @@ export default {
     login() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.$message({
-            message: "login",
-            duration: 1000
-          });
+          let params = {
+            username: this.formData.username,
+            password: this.formData.password
+          }
+          login(params).then(res => {
+            if(res && res.code == '0') {
+              this.$store.commit('SET_TOKEN',res.returnData);
+              this.$router.push('/');
+            }
+          })
         }
       });
     }
@@ -60,7 +67,7 @@ export default {
 <style lang="scss" scoped>
 .login {
   .login-card {
-    width: 540px;
+    width: 400px;
     margin: 200px auto 0 auto;
     .clearfix {
       clear: both;
