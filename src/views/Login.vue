@@ -55,7 +55,9 @@ export default {
           login(params).then(res => {
             if(res && res.code == '0') {
               this.$store.commit('SET_TOKEN',res.returnData);
-              this.$router.push('/');
+              this.$store.dispatch('GET_USER_INFO').then(res => {
+                this.$router.push('/');
+              })
             }
           })
         }

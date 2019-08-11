@@ -29,21 +29,37 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.path == "/login") {
-    next();
+  if (to.path == "/login" || store.state.token) {
+    gotoPage(to, from, next);
   } else {
-    if (store.state.token) {
-      next();
+    let token = getCache("token");
+    if (token) {
+      store.commit("SET_TOKEN", token);
+      let paramsMap = getCache('paramsMap');
+      store.commit('SET_PARAMS_MAP', paramsMap||{});
+      gotoPage(to, from, next);
     } else {
-      let token = getCache("token");
-      if (token) {
-        store.commit("SET_TOKEN", token);
-        next();
-      } else {
-        next("/login");
-      }
+      next("/login");
     }
   }
 });
+
+const gotoPage = (to, from, next) => {
+  let params = to.params;
+  if(params) {
+    if(Object.keys(params).length) {
+      store.commit('SET_PAGE_PARAMS', {
+        path: to.path,
+        params: params
+      });
+    }else if(store.state.paramsMap[to.path]) {
+      params = store.state.paramsMap[to.path];
+      for(let key in params) {
+        to.params[key] = params[key];
+      }
+    }
+  }
+  next();
+}
 
 export default router;

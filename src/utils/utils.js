@@ -1,5 +1,6 @@
 // 数据本地缓存
 export function setCache(key, data, isLocalStorage) {
+  key = "base" + key;
   let storage = isLocalStorage ? localStorage : sessionStorage;
   let dataType = typeof data;
   if (dataType == "string") {
@@ -10,6 +11,7 @@ export function setCache(key, data, isLocalStorage) {
 }
 // 获取缓存数据
 export function getCache(key, isLocalStorage) {
+  key = "base" + key;
   let storage = isLocalStorage ? localStorage : sessionStorage;
   let data = storage.getItem(key);
   if (data) {
@@ -25,6 +27,7 @@ export function getCache(key, isLocalStorage) {
 }
 // 移除本地缓存
 export function removeCache(key, isLocalStorage) {
+  key = "base" + key;
   let storage = isLocalStorage ? localStorage : sessionStorage;
   storage.removeItem(key);
 }
