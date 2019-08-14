@@ -1,5 +1,12 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: zhaoxin
+ * @Date: 2019-07-25 20:34:17
+ * @LastEditTime: 2019-08-14 09:05:18
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <page-container>
-    <h2 v-for="i in 50" :key="i">========={{i}}</h2>
+    <h1>Hello, admin!</h1>
   </page-container>
 </template>

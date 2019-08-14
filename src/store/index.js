@@ -1,3 +1,10 @@
+/*
+ * @Description: 全局store
+ * @Author: zhaoxin
+ * @Date: 2019-07-22 21:18:31
+ * @LastEditTime: 2019-08-12 10:37:13
+ * @LastEditors: Please set LastEditors
+ */
 import Vue from "vue";
 import Vuex from "vuex";
 import { setCache, removeCache } from "U/utils";
@@ -11,6 +18,7 @@ export default new Vuex.Store({
   state: {
     token: "",
     userInfo: null,
+    keepAlivePages: [],
     paramsMap: {}
   },
   mutations: {
@@ -30,8 +38,19 @@ export default new Vuex.Store({
         removeCache("userInfo");
       }
     },
-    SET_PAGE_PARAMS: (state, preload) => {
-      state.paramsMap[preload.path] = preload.params;
+    ADD_KEEP_ALIVE(state, path) {
+      if(state.keepAlivePages.indexOf(path) < 0) {
+        state.keepAlivePages.push(path);
+      }
+    },
+    DELETE_KEEP_ALIVE(state, path) {
+      let pathIndex = state.keepAlivePages.indexOf(path);
+      if(pathIndex > -1) {
+        state.keepAlivePages.push(pathIndex, 1);
+      }
+    },
+    SET_PAGE_PARAMS: (state, payload) => {
+      state.paramsMap[payload.path] = payload.params;
       setCache("paramsMap", state.paramsMap);
     },
     SET_PARAMS_MAP: (state, paramsMap) => {
