@@ -22,7 +22,7 @@
 import { mapState } from 'vuex';
 import { logout } from 'A/main';
 // 组件中Array.prototype.includes没有babel成es5，ie报错，引入未编译版本
-import { Avatar } from 'element-ui';
+import Avatar from 'element-ui/packages/avatar/src/main';
 export default {
   name: 'top-container',
   components: {
